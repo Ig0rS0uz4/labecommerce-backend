@@ -62,3 +62,30 @@ SELECT * FROM products;
 
 SELECT * FROM products
 ORDER BY price ASC;
+
+--===================================
+
+CREATE TABLE purchases (
+    id TEXT PRIMARY KEY UNIQUE NOT NULL,
+    total_price REAL UNIQUE NOT NULL,
+    paid INTEGER NOT NULL,
+    delivered_at TEXT,
+    buyer_id TEXT NOT NULL,
+    FOREIGN KEY (buyer_id) REFERENCES users(id)
+);
+
+INSERT INTO purchases (id, total_price, paid, buyer_id)
+VALUES
+    ("purc001",5000,1,"u001"),
+    ("purc002",3000,0,"u001"),
+    ("purc003",4000,0,"u001");
+
+INSERT INTO purchases (id, total_price, paid, delivered_at, buyer_id)
+VALUES
+    ("purc004",6000,1,DATETIME('now'),"u002"),
+    ("purc005",7000,0,DATETIME('now'),"u003"),
+    ("purc006",8000,1,DATETIME('now'),"u004");
+
+SELECT * FROM purchases;
+
+DROP TABLE purchases;
