@@ -82,9 +82,17 @@ VALUES
 
 INSERT INTO purchases (id, total_price, paid, delivered_at, buyer_id)
 VALUES
-    ("purc004",6000,1,DATETIME('now'),"u002"),
-    ("purc005",7000,0,DATETIME('now'),"u003"),
-    ("purc006",8000,1,DATETIME('now'),"u004");
+    ("purc004",6000,1,DATETIME('2013-10-07 08:23:19.120'),"u002"),
+    ("purc005",7000,0,DATETIME('2013-10-07 08:23:19.120'),"u003"),
+    ("purc006",8000,1,DATETIME('2013-10-07 08:23:19.120'),"u004");
+
+SELECT * FROM users
+INNER JOIN purchases
+ON purchases.buyer_id = users.id;
+
+UPDATE purchases
+SET delivered_at = DATETIME('now')
+WHERE id = "purc002";
 
 SELECT * FROM purchases;
 
